@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="VisualGDB settings">
+      <UniqueIdentifier>{d20d4bcd-8694-4022-b184-18505c50824f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src-driver">
+      <UniqueIdentifier>{9538f2cb-d7bd-4b3a-bf2d-6be14fa8369a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{c1b26258-4362-4553-99fd-1b63365f7cdc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stm32">
+      <UniqueIdentifier>{32dc4504-e0f3-4206-a9eb-ee9052923637}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="stm32l4-firmware-Debug.vgdbsettings">
+      <Filter>VisualGDB settings</Filter>
+    </None>
+    <None Include="stm32l4-firmware-Release.vgdbsettings">
+      <Filter>VisualGDB settings</Filter>
+    </None>
+    <None Include="stm32.xml">
+      <Filter>VisualGDB settings</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src-driver\startup_stm32l496xx.s">
+      <Filter>src-driver</Filter>
+    </ClCompile>
+    <ClCompile Include="src-driver\system_stm32l4xx.c">
+      <Filter>src-driver</Filter>
+    </ClCompile>
+    <ClCompile Include="src-driver\stm32l4xx_ll_utils.c">
+      <Filter>src-driver</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\system.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\dac.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\dma.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tardis_sound.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\spi.c">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src-driver\stm32l4xx.h">
+      <Filter>src-driver</Filter>
+    </ClInclude>
+    <ClInclude Include="src-driver\stm32l476xx.h">
+      <Filter>src-driver</Filter>
+    </ClInclude>
+    <ClInclude Include="src-driver\system_stm32l4xx.h">
+      <Filter>src-driver</Filter>
+    </ClInclude>
+    <ClInclude Include="stm32\stm32l4xx_ll_bus.h">
+      <Filter>stm32</Filter>
+    </ClInclude>
+    <ClInclude Include="stm32\stm32l4xx_ll_cortex.h">
+      <Filter>stm32</Filter>
+    </ClInclude>
+    <ClInclude Include="stm32\stm32l4xx_ll_dma.h">
+      <Filter>stm32</Filter>
+    </ClInclude>
+    <ClInclude Include="stm32\stm32l4xx_ll_gpio.h">
+      <Filter>stm32</Filter>
+    </ClInclude>
+    <ClInclude Include="stm32\stm32l4xx_ll_pwr.h">
+      <Filter>stm32</Filter>
+    </ClInclude>
+    <ClInclude Include="stm32\stm32l4xx_ll_rcc.h">
+      <Filter>stm32</Filter>
+    </ClInclude>
+    <ClInclude Include="stm32\stm32l4xx_ll_system.h">
+      <Filter>stm32</Filter>
+    </ClInclude>
+    <ClInclude Include="stm32\stm32l4xx_ll_utils.h">
+      <Filter>stm32</Filter>
+    </ClInclude>
+    <ClInclude Include="src\system.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\dac.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\dma.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="stm32\stm32l4xx_ll_dac.h">
+      <Filter>stm32</Filter>
+    </ClInclude>
+    <ClInclude Include="stm32\stm32l4xx_ll_tim.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tardis_sound.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\spi.h">
+      <Filter>src</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

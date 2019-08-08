@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|VisualGDB">
+      <Configuration>Debug</Configuration>
+      <Platform>VisualGDB</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|VisualGDB">
+      <Configuration>Release</Configuration>
+      <Platform>VisualGDB</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <ProjectGuid>{542A053A-5078-4687-A57A-C99F6C7BDC51}</ProjectGuid>
+    <BSP_ID>com.sysprogs.arm.stm32</BSP_ID>
+    <BSP_VERSION>2019.06</BSP_VERSION>
+    <InPlaceBSPSubdir />
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug|VisualGDB'">
+    <MCUPropertyListFile>$(ProjectDir)stm32.props</MCUPropertyListFile>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release|VisualGDB'">
+    <MCUPropertyListFile>$(ProjectDir)stm32.props</MCUPropertyListFile>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|VisualGDB'">
+    <GNUConfigurationType>Debug</GNUConfigurationType>
+    <ToolchainID>com.visualgdb.arm-eabi</ToolchainID>
+    <ToolchainVersion>7.2.0/8.0.1/r3</ToolchainVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|VisualGDB'">
+    <ToolchainID>com.visualgdb.arm-eabi</ToolchainID>
+    <ToolchainVersion>7.2.0/8.0.1/r3</ToolchainVersion>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|VisualGDB'">
+    <ClCompile>
+      <CLanguageStandard>C11</CLanguageStandard>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|VisualGDB'">
+    <ClCompile>
+      <CLanguageStandard>C11</CLanguageStandard>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="src-driver\startup_stm32l496xx.s" />
+    <ClCompile Include="src-driver\stm32l4xx_ll_utils.c" />
+    <ClCompile Include="src-driver\system_stm32l4xx.c" />
+    <ClCompile Include="src\dac.c" />
+    <ClCompile Include="src\dma.c" />
+    <ClCompile Include="src\main.c" />
+    <ClCompile Include="src\spi.c" />
+    <ClCompile Include="src\system.c" />
+    <ClCompile Include="src\tardis_sound.c" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ItemGroup>
+    <None Include="stm32l4-firmware-Debug.vgdbsettings" />
+    <None Include="stm32l4-firmware-Release.vgdbsettings" />
+    <None Include="stm32.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src-driver\stm32l476xx.h" />
+    <ClInclude Include="src-driver\stm32l4xx.h" />
+    <ClInclude Include="src-driver\system_stm32l4xx.h" />
+    <ClInclude Include="src\dac.h" />
+    <ClInclude Include="src\dma.h" />
+    <ClInclude Include="src\spi.h" />
+    <ClInclude Include="src\system.h" />
+    <ClInclude Include="src\tardis_sound.h" />
+    <ClInclude Include="stm32\stm32l4xx_ll_bus.h" />
+    <ClInclude Include="stm32\stm32l4xx_ll_cortex.h" />
+    <ClInclude Include="stm32\stm32l4xx_ll_dac.h" />
+    <ClInclude Include="stm32\stm32l4xx_ll_dma.h" />
+    <ClInclude Include="stm32\stm32l4xx_ll_gpio.h" />
+    <ClInclude Include="stm32\stm32l4xx_ll_pwr.h" />
+    <ClInclude Include="stm32\stm32l4xx_ll_rcc.h" />
+    <ClInclude Include="stm32\stm32l4xx_ll_system.h" />
+    <ClInclude Include="stm32\stm32l4xx_ll_tim.h" />
+    <ClInclude Include="stm32\stm32l4xx_ll_utils.h" />
+  </ItemGroup>
+</Project>
