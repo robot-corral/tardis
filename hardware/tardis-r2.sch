@@ -1686,6 +1686,7 @@ DIN A4, landscape with location and doc. field</description>
 <part name="GND35" library="voltage-ground" library_urn="urn:adsk.eagle:library:704746" deviceset="GND" device=""/>
 <part name="GND36" library="voltage-ground" library_urn="urn:adsk.eagle:library:704746" deviceset="GND" device=""/>
 <part name="U$29" library="voltage-ground" library_urn="urn:adsk.eagle:library:704746" deviceset="NC" device=""/>
+<part name="FRAME3" library="frames" library_urn="urn:adsk.eagle:library:229" deviceset="A4L-LOC" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -2900,6 +2901,24 @@ connector</text>
 <label x="12.7" y="96.52" size="1.778" layer="95"/>
 </segment>
 </net>
+</nets>
+</sheet>
+<sheet>
+<plain>
+<text x="7.62" y="170.18" size="1.778" layer="97" align="top-left">Revision 2 changes:
+
+- NRST is now reouted to ST-Link connector instead of NJTRST</text>
+</plain>
+<instances>
+<instance part="FRAME3" gate="G$1" x="0" y="0" smashed="yes">
+<attribute name="DRAWING_NAME" x="217.17" y="15.24" size="2.54" layer="94"/>
+<attribute name="LAST_DATE_TIME" x="217.17" y="10.16" size="2.286" layer="94"/>
+<attribute name="SHEET" x="230.505" y="5.08" size="2.54" layer="94"/>
+</instance>
+</instances>
+<busses>
+</busses>
+<nets>
 </nets>
 </sheet>
 </sheets>

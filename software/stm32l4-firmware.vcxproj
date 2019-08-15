@@ -55,6 +55,7 @@
     <ClCompile Include="src-driver\system_stm32l4xx.c" />
     <ClCompile Include="src\dac.c" />
     <ClCompile Include="src\dma.c" />
+    <ClCompile Include="src\errors.c" />
     <ClCompile Include="src\main.c" />
     <ClCompile Include="src\spi.c" />
     <ClCompile Include="src\system.c" />
@@ -74,6 +75,7 @@
     <ClInclude Include="src-driver\system_stm32l4xx.h" />
     <ClInclude Include="src\dac.h" />
     <ClInclude Include="src\dma.h" />
+    <ClInclude Include="src\errors.h" />
     <ClInclude Include="src\spi.h" />
     <ClInclude Include="src\system.h" />
     <ClInclude Include="src\tardis_sound.h" />

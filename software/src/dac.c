@@ -1,4 +1,5 @@
 #include "dac.h"
+#include "dma.h"
 
 #include "stm32/stm32l4xx_ll_bus.h"
 #include "stm32/stm32l4xx_ll_dac.h"
@@ -34,7 +35,6 @@ void configureDacTimer()
     LL_TIM_SetPrescaler(TIM6, (timer_prescaler - 1));
     LL_TIM_SetAutoReload(TIM6, (timer_reload - 1));
     LL_TIM_SetCounterMode(TIM6, LL_TIM_COUNTERMODE_UP);
-    // LL_TIM_SetRepetitionCounter(TIM6, 0);
     LL_TIM_SetTriggerOutput(TIM6, LL_TIM_TRGO_UPDATE);
     LL_TIM_EnableCounter(TIM6);
 }
@@ -58,6 +58,8 @@ void configureDac()
 
 void activateDac()
 {
+    copyAudioDataToDmaBuffer();
+
     LL_DAC_Enable(DAC1, LL_DAC_CHANNEL_1);
 
     __IO uint32_t wait_loop_index = ((LL_DAC_DELAY_STARTUP_VOLTAGE_SETTLING_US * (SystemCoreClock / (100000 * 2))) / 10);
@@ -69,4 +71,9 @@ void activateDac()
 
     LL_DAC_EnableTrigger(DAC1, LL_DAC_CHANNEL_1);
     LL_DAC_TrigSWConversion(DAC1, LL_DAC_CHANNEL_1);
+}
+
+void stopAudioPlayback()
+{
+    LL_DAC_Disable(DAC1, LL_DAC_CHANNEL_1);
 }

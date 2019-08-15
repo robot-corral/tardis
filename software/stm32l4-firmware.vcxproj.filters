@@ -53,6 +53,9 @@
     <ClCompile Include="src\spi.c">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\errors.c">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src-driver\stm32l4xx.h">
@@ -107,6 +110,9 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="src\spi.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\errors.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
