@@ -56,6 +56,12 @@
     <ClCompile Include="src\errors.c">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\tardis_light.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\pwm.c">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src-driver\stm32l4xx.h">
@@ -113,6 +119,12 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="src\errors.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tardis_light.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\pwm.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>

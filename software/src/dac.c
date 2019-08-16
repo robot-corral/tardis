@@ -27,13 +27,11 @@ void configureDacTimer()
         timer_clock_frequency = (__LL_RCC_CALC_PCLK1_FREQ(SystemCoreClock, LL_RCC_GetAPB1Prescaler()) * 2);
     }
 
-    timer_prescaler = ((timer_clock_frequency / (WAVEFORM_TIMER_PRESCALER_MAX_VALUE * WAVEFORM_TIMER_FREQUENCY_RANGE_MIN)) + 1);
-    timer_reload = (timer_clock_frequency / (timer_prescaler * WAVEFORM_FREQUENCY));
-
     LL_APB1_GRP1_EnableClock(LL_APB1_GRP1_PERIPH_TIM6);
 
-    LL_TIM_SetPrescaler(TIM6, (timer_prescaler - 1));
-    LL_TIM_SetAutoReload(TIM6, (timer_reload - 1));
+    LL_TIM_SetPrescaler(TIM6, 0);
+    LL_TIM_SetAutoReload(TIM6, __LL_TIM_CALC_ARR(timer_clock_frequency, 0, 22050));
+
     LL_TIM_SetCounterMode(TIM6, LL_TIM_COUNTERMODE_UP);
     LL_TIM_SetTriggerOutput(TIM6, LL_TIM_TRGO_UPDATE);
     LL_TIM_EnableCounter(TIM6);
@@ -69,11 +67,54 @@ void activateDac()
         wait_loop_index--;
     }
 
+    // left
+    LL_GPIO_SetPinMode(GPIOA, LL_GPIO_PIN_1, LL_GPIO_MODE_OUTPUT);
+    LL_GPIO_SetOutputPin(GPIOA, LL_GPIO_PIN_1);
+
+    // back
+    LL_GPIO_SetPinMode(GPIOB, LL_GPIO_PIN_1, LL_GPIO_MODE_OUTPUT);
+    LL_GPIO_SetOutputPin(GPIOB, LL_GPIO_PIN_1);
+
+    // front
+    LL_GPIO_SetPinMode(GPIOB, LL_GPIO_PIN_9, LL_GPIO_MODE_OUTPUT);
+    LL_GPIO_SetOutputPin(GPIOB, LL_GPIO_PIN_9);
+
+    // right
+    LL_GPIO_SetPinMode(GPIOC, LL_GPIO_PIN_7, LL_GPIO_MODE_OUTPUT);
+    LL_GPIO_SetOutputPin(GPIOC, LL_GPIO_PIN_7);
+
+    // audio
+    LL_GPIO_SetPinMode(GPIOC, LL_GPIO_PIN_5, LL_GPIO_MODE_OUTPUT);
+    LL_GPIO_ResetOutputPin(GPIOC, LL_GPIO_PIN_5);
+
     LL_DAC_EnableTrigger(DAC1, LL_DAC_CHANNEL_1);
     LL_DAC_TrigSWConversion(DAC1, LL_DAC_CHANNEL_1);
+    LL_TIM_GenerateEvent_UPDATE(TIM4);
 }
 
 void stopAudioPlayback()
 {
     LL_DAC_Disable(DAC1, LL_DAC_CHANNEL_1);
+    LL_TIM_DisableCounter(TIM4);
+    LL_TIM_DisableAllOutputs(TIM4);
+
+    // left
+    LL_GPIO_SetPinMode(GPIOA, LL_GPIO_PIN_1, LL_GPIO_MODE_OUTPUT);
+    LL_GPIO_ResetOutputPin(GPIOA, LL_GPIO_PIN_1);
+
+    // back
+    LL_GPIO_SetPinMode(GPIOB, LL_GPIO_PIN_1, LL_GPIO_MODE_OUTPUT);
+    LL_GPIO_ResetOutputPin(GPIOB, LL_GPIO_PIN_1);
+
+    // front
+    LL_GPIO_SetPinMode(GPIOB, LL_GPIO_PIN_9, LL_GPIO_MODE_OUTPUT);
+    LL_GPIO_ResetOutputPin(GPIOB, LL_GPIO_PIN_9);
+
+    // right
+    LL_GPIO_SetPinMode(GPIOC, LL_GPIO_PIN_7, LL_GPIO_MODE_OUTPUT);
+    LL_GPIO_ResetOutputPin(GPIOC, LL_GPIO_PIN_7);
+
+    // audio
+    LL_GPIO_SetPinMode(GPIOC, LL_GPIO_PIN_5, LL_GPIO_MODE_OUTPUT);
+    LL_GPIO_SetOutputPin(GPIOC, LL_GPIO_PIN_5);
 }

@@ -8,6 +8,7 @@
 
 #include "dac.h"
 #include "errors.h"
+#include "tardis_light.h"
 #include "tardis_sound.h"
 
 #define DMA_SOUND_BUFFER_SIZE               40000
@@ -19,12 +20,16 @@ static uint32_t g_nextWaveformStartIndex = 0;
 
 static uint16_t g_dmaSoundBuffer[DMA_SOUND_BUFFER_SIZE];
 
+uint32_t g_data[3];
+
 void configureDma()
 {
     NVIC_SetPriority(DMA1_Channel3_IRQn, 1);
     NVIC_EnableIRQ(DMA1_Channel3_IRQn);
 
     LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_DMA1);
+
+    // sound
 
     LL_DMA_ConfigTransfer(DMA1,
                           LL_DMA_CHANNEL_3,
@@ -41,11 +46,33 @@ void configureDma()
     LL_DMA_EnableIT_TE(DMA1, LL_DMA_CHANNEL_3);
     LL_DMA_EnableIT_HT(DMA1, LL_DMA_CHANNEL_3);
     LL_DMA_EnableIT_TC(DMA1, LL_DMA_CHANNEL_3);
+
+    // top light
+
+    LL_DMA_ConfigTransfer(DMA1,
+                          LL_DMA_CHANNEL_7,
+                          LL_DMA_DIRECTION_MEMORY_TO_PERIPH |
+                          LL_DMA_MODE_CIRCULAR |
+                          LL_DMA_PERIPH_NOINCREMENT |
+                          LL_DMA_MEMORY_INCREMENT |
+                          LL_DMA_PDATAALIGN_WORD |
+                          LL_DMA_MDATAALIGN_WORD |
+                          LL_DMA_PRIORITY_HIGH);
+
+    LL_DMA_SetPeriphRequest(DMA1, LL_DMA_CHANNEL_7, LL_DMA_REQUEST_6);
+
+    LL_DMA_ConfigAddresses(DMA1,
+                           LL_DMA_CHANNEL_7,
+                           (uint32_t) g_lightData_12bits,
+                           (uint32_t) &TIM4->CCR1,
+                           LL_DMA_DIRECTION_MEMORY_TO_PERIPH);
+    LL_DMA_SetDataLength(DMA1, LL_DMA_CHANNEL_7, LIGHT_SAMPLES_SIZE);
+    LL_DMA_EnableChannel(DMA1, LL_DMA_CHANNEL_7);
 }
 
 void copyAudioDataToDmaBuffer()
 {
-    memcpy(&g_dmaSoundBuffer[DMA_SOUND_BUFFER_1ST_HALF_START_IDX], g_waveformSine_12bits, sizeof(uint16_t) * DMA_SOUND_BUFFER_SIZE);
+    memcpy(&g_dmaSoundBuffer[DMA_SOUND_BUFFER_1ST_HALF_START_IDX], g_waveformData_12bits, sizeof(uint16_t) * DMA_SOUND_BUFFER_SIZE);
 
     LL_DMA_ConfigAddresses(DMA1,
                            LL_DMA_CHANNEL_3,
@@ -73,7 +100,7 @@ void transferComplete(uint32_t startAddress)
                                        WAVEFORM_SAMPLES_SIZE - g_nextWaveformStartIndex :
                                        DMA_SOUND_BUFFER_HALF_SIZE;
 
-        memcpy(&g_dmaSoundBuffer[startAddress], &g_waveformSine_12bits[g_nextWaveformStartIndex], sizeof(uint16_t) * samplesToCopy);
+        memcpy(&g_dmaSoundBuffer[startAddress], &g_waveformData_12bits[g_nextWaveformStartIndex], sizeof(uint16_t) * samplesToCopy);
 
         if (samplesToCopy != DMA_SOUND_BUFFER_HALF_SIZE)
         {

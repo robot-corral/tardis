@@ -57,8 +57,10 @@
     <ClCompile Include="src\dma.c" />
     <ClCompile Include="src\errors.c" />
     <ClCompile Include="src\main.c" />
+    <ClCompile Include="src\pwm.c" />
     <ClCompile Include="src\spi.c" />
     <ClCompile Include="src\system.c" />
+    <ClCompile Include="src\tardis_light.c" />
     <ClCompile Include="src\tardis_sound.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
@@ -76,8 +78,10 @@
     <ClInclude Include="src\dac.h" />
     <ClInclude Include="src\dma.h" />
     <ClInclude Include="src\errors.h" />
+    <ClInclude Include="src\pwm.h" />
     <ClInclude Include="src\spi.h" />
     <ClInclude Include="src\system.h" />
+    <ClInclude Include="src\tardis_light.h" />
     <ClInclude Include="src\tardis_sound.h" />
     <ClInclude Include="stm32\stm32l4xx_ll_bus.h" />
     <ClInclude Include="stm32\stm32l4xx_ll_cortex.h" />

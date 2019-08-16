@@ -1,5 +1,6 @@
 #include "dac.h"
 #include "dma.h"
+#include "pwm.h"
 #include "spi.h"
 #include "system.h"
 
@@ -12,34 +13,17 @@
 void main()
 {
     configureSystemClock();
-    configureDma();
-    configureDacTimer();
-    configureDac();
-    configureSpi();
-    activateDac();
 
     LL_AHB2_GRP1_EnableClock(LL_AHB2_GRP1_PERIPH_GPIOA);
     LL_AHB2_GRP1_EnableClock(LL_AHB2_GRP1_PERIPH_GPIOB);
     LL_AHB2_GRP1_EnableClock(LL_AHB2_GRP1_PERIPH_GPIOC);
 
-    LL_GPIO_SetPinMode(GPIOA, LL_GPIO_PIN_1, LL_GPIO_MODE_OUTPUT);
-    LL_GPIO_SetOutputPin(GPIOA, LL_GPIO_PIN_1);
-
-    LL_GPIO_SetPinMode(GPIOB, LL_GPIO_PIN_1, LL_GPIO_MODE_OUTPUT);
-    LL_GPIO_SetOutputPin(GPIOB, LL_GPIO_PIN_1);
-
-    LL_GPIO_SetPinMode(GPIOB, LL_GPIO_PIN_6, LL_GPIO_MODE_OUTPUT);
-    LL_GPIO_SetOutputPin(GPIOB, LL_GPIO_PIN_6);
-
-    LL_GPIO_SetPinMode(GPIOB, LL_GPIO_PIN_9, LL_GPIO_MODE_OUTPUT);
-    LL_GPIO_SetOutputPin(GPIOB, LL_GPIO_PIN_9);
-
-    LL_GPIO_SetPinMode(GPIOC, LL_GPIO_PIN_7, LL_GPIO_MODE_OUTPUT);
-    LL_GPIO_SetOutputPin(GPIOC, LL_GPIO_PIN_7);
-
-    // audio on
-    LL_GPIO_SetPinMode(GPIOC, LL_GPIO_PIN_5, LL_GPIO_MODE_OUTPUT);
-    LL_GPIO_ResetOutputPin(GPIOC, LL_GPIO_PIN_5);
+    configureDma();
+    configureDacTimer();
+    configureDac();
+    configureSpi();
+    configurePwm();
+    activateDac();
 
     for (;;);
 }
