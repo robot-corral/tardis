@@ -89,6 +89,11 @@ void activateDac()
 
     LL_DAC_EnableTrigger(DAC1, LL_DAC_CHANNEL_1);
     LL_DAC_TrigSWConversion(DAC1, LL_DAC_CHANNEL_1);
+
+    // light
+    LL_TIM_CC_EnableChannel(TIM4, LL_TIM_CHANNEL_CH1);
+    LL_TIM_EnableAllOutputs(TIM4);
+    LL_TIM_EnableCounter(TIM4);
     LL_TIM_GenerateEvent_UPDATE(TIM4);
 }
 

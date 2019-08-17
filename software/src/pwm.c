@@ -29,8 +29,4 @@ void configurePwm()
     LL_TIM_OC_EnablePreload(TIM4, LL_TIM_CHANNEL_CH1);
 
     LL_TIM_EnableDMAReq_UPDATE(TIM4);
-
-    LL_TIM_CC_EnableChannel(TIM4, LL_TIM_CHANNEL_CH1);
-    LL_TIM_EnableAllOutputs(TIM4);
-    LL_TIM_EnableCounter(TIM4);
 }
