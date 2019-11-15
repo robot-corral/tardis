@@ -56,6 +56,7 @@
     <ClCompile Include="src\dac.c" />
     <ClCompile Include="src\dma.c" />
     <ClCompile Include="src\errors.c" />
+    <ClCompile Include="src\lsm6dsox.c" />
     <ClCompile Include="src\main.c" />
     <ClCompile Include="src\pwm.c" />
     <ClCompile Include="src\spi.c" />
@@ -78,6 +79,7 @@
     <ClInclude Include="src\dac.h" />
     <ClInclude Include="src\dma.h" />
     <ClInclude Include="src\errors.h" />
+    <ClInclude Include="src\lsm6dsox.h" />
     <ClInclude Include="src\pwm.h" />
     <ClInclude Include="src\spi.h" />
     <ClInclude Include="src\system.h" />

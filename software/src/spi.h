@@ -1,3 +1,4 @@
 #pragma once
 
-void configureSpi();
+void configureSpi3();
+void shutdownSpi3();

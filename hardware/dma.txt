@@ -1,0 +1,20 @@
+-- these can operate at any time
+
+QuadSPI				DMA 1 - Channel 5 / DMA 2 - Channel 7
+
+-- configuring hardware only during boot time
+
+IMU		SPI3_RX		DMA 2 - Channel 1
+		SPI3_TX		DMA 2 - Channel 2
+
+-- these operate only when sound is playing
+
+DAC		DAC1_CH1	DMA 1 - Channel 3 / DMA 2 - Channel 4
+Top-Light	TIM4_CH1	DMA 1 - Channel 7
+
+-- these operate only when device is shutting down
+
+Left-Light	TIM2_CH2	DMA 1 - Channel 2	
+Right-Light     TIM3_CH1	DMA 1 - Channel 3
+Back-Light	TIM5_CH3	DMA 2 - Channel 2
+Front-Light	TIM1_CH1	DMA 1 - Channel 6

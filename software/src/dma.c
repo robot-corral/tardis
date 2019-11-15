@@ -128,3 +128,11 @@ void DMA1_Channel3_IRQHandler()
         catastrophicError();
     }
 }
+
+void configureSpi3Dma()
+{
+}
+
+void shutdownSpi3Dma()
+{
+}
